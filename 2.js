@@ -1,9 +1,12 @@
+var audio = new Audio('1.mp3');
+audio.currentTime = 12.75;
 var answer = Math.random()*100;
 answer = Math.ceil(answer);
 console.log(answer);
 var mistake = 0
 
 function f(){
+    audio.play()
     var guess = document.getElementById("number");
     var t = guess.value
     var text = document.getElementById("result_text");
@@ -14,8 +17,6 @@ function f(){
             text.style.backgroundColor='Green';
             text.style.fontSize=2+'em';
             text.style.width=40+'vw';
-            var audio = new Audio('1.mp3');
-            audio.play();
         }
         else if (t>answer){
             text.innerHTML=`Guess a number less than ${t}`;
@@ -28,8 +29,7 @@ function f(){
         }
         console.log(mistake);
         if (mistake>=9){
-            var audio = new Audio('1.mp3');
-            audio.play();
+            audio.pause()
         }
         else if (mistake>=7){
             text.style.backgroundColor='red';
@@ -40,5 +40,6 @@ function f(){
     }
     else{
         text.innerHTML=`Guess is finished. You lost.`;
+        audio.pause()
     }
 }
